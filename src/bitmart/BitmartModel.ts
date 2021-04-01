@@ -26,12 +26,12 @@ class BitmartModel extends Bitmart {
     //   let increasedNotional = (notional * 10) / 100;
     //   notional = increasedNotional + notional;
     // }
-
     const ticker = await this.getTicker(symbol);
     const lastPrice = ticker.data.tickers[0].last_price;
     notional = +(lastPrice * size).toFixed(8);
     let increasedNotional = (notional * 10) / 100;
     notional = increasedNotional + notional;
+    console.log('notional ->>>>>->>>>>>>>>>>>>>>>>>>>>>>>',notional);
     const order = await this.privateRequest("post", "/spot/v1/submit_order", {
       "symbol": symbol,
       "side": side,
